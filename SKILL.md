@@ -33,12 +33,12 @@ There's a live interview surface, the **Louis Theroux Workbench** (a small local
 
 **Check for it as part of Step 0** — read `~/.claude/louis-web.json` (the workbench self-registers there wherever it's cloned; no hard-coded path):
 
-- **Pointer present** → the workbench is set up on this machine. It gives you `home` (the repo path) and `port`. Conduct the interview through it:
+- **Pointer present** → the workbench is set up on this machine (`home` = repo path, `port`). Conduct the interview through it. Issues are namespaced **by project**, so first fix the **project slug**: a short kebab slug for the product/repo you're working in (Sam Camp → `sam-camp`, T3 Academy → `t3-academy`). If you genuinely can't tell which project, use `unsure` and Tom re-files later. Then:
   - Ensure it's running: `python <home>/louis.py up`.
-  - Open/scaffold this issue: if `<home>/data/<#>.json` doesn't exist, `python <home>/louis.py new <#> "<feature>"`; fill its `context_brief` from your Step-0 pass.
-  - Post each question round *into* `<home>/data/<#>.json` (a round `{n, status:"open", questions:[{id,text}]}`) rather than asking in chat — Tom answers in the browser.
-  - Wait with `python <home>/louis.py watch <#>` (scoped to this issue); it wakes when Tom submits. Then process that round per the workbench's own `CLAUDE.md`: mark it `processed`, append the next round, or on a **dry round** write the explainer.
-  - When you freeze: write the canonical HTML explainer to the project repo's `mockups/` folder and link it on the issue (unchanged, below), **and** mirror the frozen understanding into the issue's `explainer` field in `data/<#>.json` so the workbench's Explainer tab reflects "done."
+  - Open/scaffold this issue: if `<home>/data/<project>/<#>.json` doesn't exist, `python <home>/louis.py new <project> <#> "<feature>"`; fill its `context_brief` from your Step-0 pass.
+  - Post each question round *into* `<home>/data/<project>/<#>.json` (a round `{n, status:"open", questions:[{id,text}]}`) rather than asking in chat — Tom answers in the browser.
+  - Wait with `python <home>/louis.py watch <project> <#>` (scoped to this one issue); it wakes when Tom submits. Then process that round per the workbench's own `CLAUDE.md`: mark it `processed`, append the next round, or on a **dry round** write the explainer.
+  - When you freeze: write the canonical HTML explainer to the project repo's `mockups/` folder and link it on the issue (unchanged, below), **and** mirror the frozen understanding into the issue's `explainer` field in `data/<project>/<#>.json` so the workbench's Explainer tab reflects "done."
 - **Pointer absent** → no workbench here. Run the interview in chat, exactly as the rest of this skill describes.
 
 ## The protocol — the five moves after context
