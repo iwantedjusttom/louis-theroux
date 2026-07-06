@@ -27,6 +27,20 @@ When the feature is unclear, your job is to **surface the gap and ask** — neve
 
 Then open the interview by *showing your work*: "Here's what I already know about this and its neighbors — correct me where I'm wrong." That single move is what kills "starting from scratch every time."
 
+## Where the interview happens — the workbench (a surface, when available)
+
+There's a live interview surface, the **Louis Theroux Workbench** (a small local web app with a Questions / Explainer / Mockup tab per issue). It is a **surface, not a store**: when it's present you *conduct* the interview there instead of in chat, but the frozen explainer is still written to the project repo's `mockups/` folder and linked on the issue exactly as described below — that stays canonical. Nothing about your output, the five moves, the dry-round bar, or the handoff changes; only *where the Q&A happens*.
+
+**Check for it as part of Step 0** — read `~/.claude/louis-web.json` (the workbench self-registers there wherever it's cloned; no hard-coded path):
+
+- **Pointer present** → the workbench is set up on this machine. It gives you `home` (the repo path) and `port`. Conduct the interview through it:
+  - Ensure it's running: `python <home>/louis.py up`.
+  - Open/scaffold this issue: if `<home>/data/<#>.json` doesn't exist, `python <home>/louis.py new <#> "<feature>"`; fill its `context_brief` from your Step-0 pass.
+  - Post each question round *into* `<home>/data/<#>.json` (a round `{n, status:"open", questions:[{id,text}]}`) rather than asking in chat — Tom answers in the browser.
+  - Wait with `python <home>/louis.py watch <#>` (scoped to this issue); it wakes when Tom submits. Then process that round per the workbench's own `CLAUDE.md`: mark it `processed`, append the next round, or on a **dry round** write the explainer.
+  - When you freeze: write the canonical HTML explainer to the project repo's `mockups/` folder and link it on the issue (unchanged, below), **and** mirror the frozen understanding into the issue's `explainer` field in `data/<#>.json` so the workbench's Explainer tab reflects "done."
+- **Pointer absent** → no workbench here. Run the interview in chat, exactly as the rest of this skill describes.
+
 ## The protocol — the five moves after context
 
 1. **Restate the feature back.** A short plain-language summary of what you *think* the feature is and how it behaves. This makes your current understanding visible so Tom can catch a wrong frame in one read.
